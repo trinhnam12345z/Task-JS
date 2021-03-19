@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .dropbtn {
+            background-color: #555855;
+            color: white;
+            padding: 5px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button{
+            background-color: #555855;
+            color: white;
+            padding: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: #151615;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content input.dropMenu{
+            background-color: #303130;
+            border: none;
+            color: white;
+            padding: 5px 5px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 100px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #151615;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="hideLogin">
+        <label>User : </label>
+        <input id="loginUser" type="text">
+        <button onclick="login()">Login</button>
+    </div>
+    <div id="btnOption" style="margin-left: 1300px; display: none;">
+        <button onclick="option()">Options</button>
+    </div>
+    <div id="hide" style="display: none;">
+        <div id="userName"></div>
+        <div id="tabs"></div>
+        
+        <div id="question"></div>
+        <button onclick="save()">Save</button><br>
+    </div>
+    
+    <div id="btnBack" style="margin-left: 1300px; display: none;">
+        <button onclick="back()">Back</button>
+    </div>
+    <div id="options" style="display: none;"> 
+        <div style="border-style: solid;border-width: 2px;margin-top: 10px;">
+            <div>
+                <p style="border-style: solid;border-width: medium; width: 100px;">Create User</p>
+                <label>User Name:</label><input type="text" id="CUserName"><br>
+                <button type="submit" onclick="CreateUser()">Save</button>
+            </div>
+            <div>
+                <p style="border-style: solid;border-width: medium; width: 100px">Update User</p>
+                <label>User ID:</label>
+                <select id="UUserID"></select><br>
+                <label>User Name:</label><input type="text" id="UUserName"><br>
+                <button type="submit" onclick="UpdateUser()">Save</button>
+                <label></label>
+            </div>
+            <div>
+                <p style="border-style: solid;border-width: medium; width: 100px">Delete User</p>
+                <label>User ID:</label>
+                <select id="DUserID"></select><br>
+                <button type="submit" onclick="DeleteUser()">Save</button>
+            </div>
+            <br>
+        </div>
+        <br>
+        <div style="border-style: solid;border-width: 2px;">
+            <div>
+                <p style="border-style: solid;border-width: medium; width: 100px;">Create Survey</p>
+                <label>Survey Name:</label><input type="text" id="CSurveyName"><br>
+                <button type="submit" onclick="CreateSurvey()">Save</button>
+            </div>
+            <div>
+                <p style="border-style: solid;border-width: medium; width: 100px">Update Survey</p>
+                <label>Survey ID:</label>
+                <select id="USurveyID"></select><br>
+                <label>Survey Name:</label><input type="text" id="USurveyName"><br>
+                <button type="submit" onclick="UpdateSurvey()">Save</button>
+                <label></label>
+            </div>
+            <div>
+                <p style="border-style: solid;border-width: medium; width: 100px">Delete Survey</p>
+                <label>Survey ID:</label>
+                <select id="DSurveyID"></select><br>
+                <button type="submit" onclick="DeleteSurvey()">Save</button>
+            </div>
+            <br>
+        </div>
+        <br>
+        <div style="border-style: solid;border-width: 2px;">
+            <div>
+                <p style="border-style: solid;border-width: medium; width: 200px;">Create Question</p>
+                <label>Question :</label><input type="text" id="CQuestionName"><br>
+                <label>Survey :</label>
+                <select id="CSurvey_id"></select><br>
+                <label>Order :</label><input type="number" id="COrder"><br>
+                <label>Question Type :</label>
+                <select id="Cquestion_type"></select><br>
+                <button type="submit" onclick="CreateQuestion()">Save</button>
+                <br>
+            </div>
+            <div>
+                <p style="border-style: solid;border-width: medium; width: 200px;">Update Question</p>
+                <label>Question ID:</label>
+                <select id="UQuestionID"></select><br>
+                <label>Question :</label><input type="text" id="UQuestionName"><br>
+                <label>Survey :</label>
+                <select id="USurvey_id"></select><br>
+                <label>Order :</label><input type="number" id="UOrder"><br>
+                <label>Question Type :</label>
+                <select id="Uquestion_type"></select><br>
+                <button type="submit" onclick="UpdateQuestion()">Save</button>
+                <br>
+            </div>
+            <div>
+                <p style="border-style: solid;border-width: medium; width: 200px">Delete Question</p>
+                <label>Question ID:</label><input type="number" id="DQuestionID"><br>
+                <button type="submit" onclick="DeleteQuestion()">Save</button>
+            </div>
+        </div>
+        <br>
+        <div style="border-style: solid;border-width: 2px;">
+            <div>
+                <!-- <p style="border-style: solid;border-width: medium; width: 100px">Create Answer</p>
+                <button type="submit" onclick="addAnswer()">Add</button>
+                <div id="changeAnswer">
+                </div> -->
+                <p style="border-style: solid;border-width: medium; width: 200px;">Create Answer</p>
+                <label>Question :</label>
+                <select id="CQuestion_id"></select><br>
+                <label>Answer :</label>
+                <input id="CAnswer" type="text"><br>
+                <button type="submit" onclick="CreateAnswer()">Save</button>
+            </div>
+            <div>
+                <p style="border-style: solid;border-width: medium; width: 200px;">Update Answer</p>
+                <label>Answer ID:</label><input type="number" id="UAnswerID"><br>
+                <label>Question :</label>
+                <select id="UQuestion_id"></select><br>
+                <label>Answer :</label>
+                <input id="UAnswer" type="text"><br>
+                <button type="submit" onclick="UpdateAnswer()">Save</button>
+                <br>
+            </div>
+            <div>
+                <p style="border-style: solid;border-width: medium; width: 200px">Delete Answer</p>
+                <label>Question ID:</label><input type="number" id="DAnswerID"><br>
+                <button type="submit" onclick="DeleteAnswer()">Save</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <script>
+
+        function random(number) {
+            return Math.floor(Math.random() * number);
+        }
+
+        setInterval (function bgChange() {
+            var randomColor = Math.floor(Math.random()*16777215).toString(16);
+            document.body.style.backgroundColor = "#"+randomColor;
+        },100)
+
+    </script> -->
+    <script src="./task1.js"></script>
+
+</body>
+
+</html>
