@@ -1,10 +1,52 @@
 var question_answer = [
-    { id: 1, question: "question 1", answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", order: 1, category_id: 2 },
-    { id: 2, question: "question 2", answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", order: 2, category_id: 2 },
-    { id: 3, question: "question 3", answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", order: 3, category_id: 2 },
-    { id: 4, question: "question 4", answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", order: 4, category_id: 1 },
-    { id: 5, question: "question 5", answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", order: 5, category_id: 1 },
-    { id: 6, question: "question 6", answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", order: 6, category_id: 1 },
+    {
+        id: 1,
+        question: "question 1",
+        answer:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        order: 1,
+        category_id: 2,
+    },
+    {
+        id: 2,
+        question: "question 2",
+        answer:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        order: 2,
+        category_id: 2,
+    },
+    {
+        id: 3,
+        question: "question 3",
+        answer:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        order: 3,
+        category_id: 2,
+    },
+    {
+        id: 4,
+        question: "question 4",
+        answer:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        order: 4,
+        category_id: 1,
+    },
+    {
+        id: 5,
+        question: "question 5",
+        answer:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        order: 5,
+        category_id: 1,
+    },
+    {
+        id: 6,
+        question: "question 6",
+        answer:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        order: 6,
+        category_id: 1,
+    },
 ];
 
 var categories = [
@@ -17,20 +59,22 @@ function createTabs() {
     tabs.innerHTML = "";
     for (let i = 0; i < categories.length; i++) {
         tabs.innerHTML += `<button style="margin:10px 10px ;" class="btn btn-primary" id="categories${categories[i].id}" value ="${categories[i].name}" 
-        type="button" onclick="selectCategories(${categories[i].id})" >${categories[i].name}</button>`
-    } categories
-    tabs.innerHTML += `<br>`
+        type="button" onclick="selectCategories(${categories[i].id})" >${categories[i].name}</button>`;
+    }
+    categories;
+    tabs.innerHTML += `<br>`;
 }
 createTabs();
-
 
 var currentCategoryId = 1;
 getQuestion(currentCategoryId);
 function getQuestion(id) {
     const x = document.getElementById("question");
-    x.innerHTML = '';
-    const categoriesSelected = categories.find(s => s.id === id);
-    let questions = question_answer.filter(a => a.category_id === categoriesSelected.id);
+    x.innerHTML = "";
+    const categoriesSelected = categories.find((s) => s.id === id);
+    let questions = question_answer.filter(
+        (a) => a.category_id === categoriesSelected.id
+    );
     for (let i = 0; i < questions.length; i++) {
         x.innerHTML += `<div class="accordion-item">
             <h2 class="accordion-header" id="flush-heading${i}">
@@ -41,37 +85,42 @@ function getQuestion(id) {
             <div id="flush-collapse${i}" class="accordion-collapse collapse" aria-labelledby="flush-heading${i}" data-bs-parent="#accordionFlushExample">
             <div class="accordion-body"><p> ${questions[i].answer}.</p></div>
             </div>
-        </div>`
+        </div>`;
     }
 }
-
-function GetValueUpdate(e){
-    console.log(e);
-
+var currentQuestionSelected;
+function GetValueUpdate(id) {
+    currentQuestionSelected = question_answer.find((q) => q.id === id);
+    document.getElementById("UQuestionId").value = `${currentQuestionSelected.id}`;
+    document.getElementById("UQuestion").value = `${currentQuestionSelected.question}`;
+    document.getElementById("UAnswer").value = `${currentQuestionSelected.answer}`;
+    document.getElementById("UOrder").value = `${currentQuestionSelected.order}`;
 }
 
 // ===================================== Options Select ================================================
 // Question category
-const GetCCategory = document.getElementById("CCategories");
-GetCCategory.innerHTML = '';
-for (let i = 0; i < categories.length; i++) {
-    GetCCategory.innerHTML += `<option value="${categories[i].id}">${categories[i].name}</option>`
+function SLCCategories(){
+    const GetCCategory = document.getElementById("CCategories");
+    GetCCategory.innerHTML = "";
+    for (let i = 0; i < categories.length; i++) {
+        GetCCategory.innerHTML += `<option value="${categories[i].id}">${categories[i].name}</option>`;
+    }
 }
-
-const GetUCategory = document.getElementById("UCategory");
-GetUCategory.innerHTML = '';
-for (let i = 0; i < categories.length; i++) {
-    GetUCategory.innerHTML += `<option value="${categories[i].id}">${categories[i].name}</option>`
+function UCategory(){
+    const GetUCategory = document.getElementById("UCategory");
+    GetUCategory.innerHTML = "";
+    for (let i = 0; i < categories.length; i++) {
+        GetUCategory.innerHTML += `<option value="${categories[i].id}">${categories[i].name}</option>`;
+    }
 }
-
 // =====================================================================================================
 
 function selectCategories(categoriesId) {
-    getQuestion(categoriesId)
+    getQuestion(categoriesId);
     currentCategoryId = categoriesId;
 }
 
-// Question 
+// Question
 function CreateQuestion(question, answer, order, category_id) {
     const id = Math.floor(question_answer.length + 1);
     question = document.getElementById("CQuestion").value;
@@ -84,12 +133,12 @@ function CreateQuestion(question, answer, order, category_id) {
 }
 
 function UpdateQuestion(id, question, answer, order, category_id) {
-    id = Math.floor(document.getElementById("UQuestionId").value)
+    id = Math.floor(document.getElementById("UQuestionId").value);
     question = document.getElementById("UQuestion").value;
     answer = document.getElementById("UAnswer").value;
     order = Math.floor(document.getElementById("UOrder").value);
     category_id = Math.floor(document.getElementById("UCategory").value);
-    for (let i = 0; i < question.length; i++) {
+    for (let i = 0; i < question_answer.length; i++) {
         if (question_answer[i].id == id) {
             question_answer[i].question = question;
             question_answer[i].answer = answer;
@@ -97,7 +146,6 @@ function UpdateQuestion(id, question, answer, order, category_id) {
             question_answer[i].category_id = category_id;
         }
     }
-
     if (id > question_answer.length) {
         alert("Update Fail  !");
     } else {
@@ -117,17 +165,19 @@ function DeleteQuestion(id) {
     getQuestion(currentCategoryId);
 }
 
-// Category 
+// Category
 
 function CreateCategory(name) {
     const id = Math.floor(categories.length + 1);
     name = document.getElementById("CCategory").value;
-    categories.push({ id, name});
+    categories.push({ id, name });
     alert("Create success  !");
+    SLCCategories();
+    UCategory();
 }
 
-function UpdateCategory(id,name){
-    id = Math.floor(document.getElementById("UCategoryId").value)
+function UpdateCategory(id, name) {
+    id = Math.floor(document.getElementById("UCategoryId").value);
     name = document.getElementById("UCategoryName").value;
     for (let i = 0; i < categories.length; i++) {
         if (categories[i].id == id) {
@@ -139,8 +189,10 @@ function UpdateCategory(id,name){
     } else {
         alert("Update success  !");
     }
+    SLCCategories();
+    UCategory();
 }
-function DeleteCategory(id){
+function DeleteCategory(id) {
     id = Math.floor(document.getElementById("DCategoryID").value);
     categories.splice(id - 1, 1);
     if (id > categories.length) {
@@ -148,20 +200,24 @@ function DeleteCategory(id){
     } else {
         alert("Delete success  !");
     }
+    SLCCategories();
+    UCategory();
 }
 
-// Setting 
-function setting(){
+
+
+// Setting
+function setting() {
     document.getElementById("crud").style.display = "inline";
     document.getElementById("btnSetting").style.display = "none";
     document.getElementById("btnBack").style.display = "inline";
     document.getElementById("tabs").style.display = "none";
     document.getElementById("question").style.display = "none";
-
-
+    SLCCategories();
+    UCategory();
 }
 
-function back(){
+function back() {
     document.getElementById("crud").style.display = "none";
     document.getElementById("btnSetting").style.display = "inline";
     document.getElementById("btnBack").style.display = "none";
