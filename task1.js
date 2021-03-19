@@ -8,17 +8,17 @@ var survey = [
   { id: 2, name: "survey 2" },
 ];
 var question = [
-  { id: 1, question: "question 1", survey_id: 1, order: 1,question_type_id: 1},
-  { id: 2, question: "question 2", survey_id: 1, order: 2,question_type_id: 1},
-  { id: 3, question: "question 3", survey_id: 2, order: 3,question_type_id: 1},
-  { id: 4, question: "question 4", survey_id: 2, order: 4,question_type_id: 2},
-  { id: 5, question: "question 5", survey_id: 1, order: 4,question_type_id: 3},
+  { id: 1, question: "question 1", survey_id: 1, order: 1, question_type_id: 1 },
+  { id: 2, question: "question 2", survey_id: 1, order: 2, question_type_id: 1 },
+  { id: 3, question: "question 3", survey_id: 2, order: 3, question_type_id: 1 },
+  { id: 4, question: "question 4", survey_id: 2, order: 4, question_type_id: 2 },
+  { id: 5, question: "question 5", survey_id: 1, order: 4, question_type_id: 3 },
 ];
 
 var questionType = [
-  {id: 1, typeName: "radio"},
-  {id: 2, typeName: "checkbox"},
-  {id: 3, typeName: "text"},
+  { id: 1, typeName: "radio" },
+  { id: 2, typeName: "checkbox" },
+  { id: 3, typeName: "text" },
 ];
 var answer = [
   { id: 1, answer: "A", question_id: 1 },
@@ -79,7 +79,7 @@ function loadSurvey(id) {
         }
         x.innerHTML += `<label for=" ${answers[j].id}">Answer ==> id : ${answers[j].id} answer : ${answers[j].answer} question_id : ${answers[j].question_id}</label><br>`;
       }
-    }else if(questions[i].question_type_id === 2){
+    } else if (questions[i].question_type_id === 2) {
       for (let j = 0; j < answers.length; j++) {
         // get user_answer selected
         const answerId = answers[j].id;
@@ -93,18 +93,71 @@ function loadSurvey(id) {
         }
         x.innerHTML += `<label for=" ${answers[j].id}">Answer ==> id : ${answers[j].id} answer : ${answers[j].answer} question_id : ${answers[j].question_id}</label><br>`;
       }
-    }else if(questions[i].question_type_id === 3){
+    } else if (questions[i].question_type_id === 3) {
       for (let j = 0; j < answers.length; j++) {
         // get user_answer selected
         const answerId = answers[j].id;
         // console.log(user_answers_question);
         // console.log(answerId);
-          x.innerHTML += `<textarea name="" id="" cols="50" rows="5" >${answers[j].answer}</textarea>`
+        x.innerHTML += `<textarea name="" id="" cols="50" rows="5" >${answers[j].answer}</textarea>`
       }
     }
-    }
+  }
 }
 
+function LoadSettingSurvey() {
+  for (let s = 0; s < survey.length; s++) {
+
+    const x = document.getElementById("options");
+    x.innerHTML = '';
+    const surveySelected = survey[s];
+    // for (let s = 0; s < survey.length; s++) {
+    x.innerHTML += " ==================== Survey  ====================";
+    x.innerHTML += `<p>id : ${surveySelected.id} name : ${surveySelected.name} </p><br>`;
+    let questions = question.filter(a => a.survey_id === surveySelected.id);
+    for (let i = 0; i < questions.length; i++) {
+      x.innerHTML += `<p>Questions ==> id : ${questions[i].id} name : ${questions[i].question} survey_id : ${questions[i].survey_id} order : ${questions[i].order}</p><br>`;
+      let answers = answer.filter(a => a.question_id === questions[i].id);
+      if (questions[i].question_type_id === 1) {
+        for (let j = 0; j < answers.length; j++) {
+          // get user_answer selected
+          const answerId = answers[j].id;
+          // console.log(user_answers_question);
+          // console.log(answerId);
+          const answerSelected = user_answers_question.find(ua => ua.answerId === answerId && ua.userId === currentUserId);
+          if (answerSelected) {
+            x.innerHTML += `<input type="text" note="id is answerid" surveyId="${surveySelected.id}" id="${answers[j].id}" name=" ${questions[i].question}"  value="${answers[j].answer}" checked="checked">`
+          } else {
+            x.innerHTML += `<input type="text" note="id is answerid"  surveyId="${surveySelected.id}" id="${answers[j].id}" name=" ${questions[i].question}"  value="${answers[j].answer}">`
+          }
+          // x.innerHTML += `<label for=" ${answers[j].id}">Answer ==> id : ${answers[j].id} answer : ${answers[j].answer} question_id : ${answers[j].question_id}</label><br>`;
+        }
+      } else if (questions[i].question_type_id === 2) {
+        for (let j = 0; j < answers.length; j++) {
+          // get user_answer selected
+          const answerId = answers[j].id;
+          // console.log(user_answers_question);
+          // console.log(answerId);
+          const answerSelected = user_answers_question.find(ua => ua.answerId === answerId && ua.userId === currentUserId);
+          if (answerSelected) {
+            x.innerHTML += `<input type="text" note="id is answerid" surveyId="${surveySelected.id}" id="${answers[j].id}" name=" ${questions[i].question}"  value="${answers[j].answer}" checked="checked">`
+          } else {
+            x.innerHTML += `<input type="text" note="id is answerid"  surveyId="${surveySelected.id}" id="${answers[j].id}" name=" ${questions[i].question}"  value="${answers[j].answer}">`
+          }
+          x.innerHTML += `<label for=" ${answers[j].id}">Answer ==> id : ${answers[j].id} answer : ${answers[j].answer} question_id : ${answers[j].question_id}</label><br>`;
+        }
+      } else if (questions[i].question_type_id === 3) {
+        for (let j = 0; j < answers.length; j++) {
+          // get user_answer selected
+          const answerId = answers[j].id;
+          // console.log(user_answers_question);
+          // console.log(answerId);
+          x.innerHTML += `<textarea name="" id="" cols="50" rows="5" >${answers[j].answer}</textarea>`
+        }
+      }
+    }
+  }
+}
 
 
 // ==================== select Questions ===================
@@ -174,9 +227,9 @@ const SelectUQuestionId = document.getElementById("UQuestion_id");
 for (let i = 0; i < question.length; i++) {
   SelectUQuestionId.innerHTML += `<option value="${question[i].id}">${question[i].question}</option>`
 }
-function addAnswer(){
+function addAnswer() {
   let a = document.getElementById("changeAnswer")
-  a.innerHTML +=`<label>Answer :</label><input type="text"><br>`;
+  a.innerHTML += `<label>Answer :</label><input type="text"><br>`;
 }
 
 
@@ -189,25 +242,25 @@ function UpdateUser(id, name) {
       user[i].name = name;
     }
   }
-  if (id>user.length) {
-  alert("Update Fail  !"); 
-  }else{
-  alert("Update success  !");
+  if (id > user.length) {
+    alert("Update Fail  !");
+  } else {
+    alert("Update success  !");
   }
 }
 function DeleteUser(id) {
   id = Math.floor(document.getElementById("DUserID").value);
-  user.splice(id-1, 1);
-  if (id>user.length) {
-    alert("Delete Fail  !"); 
-    }else{
+  user.splice(id - 1, 1);
+  if (id > user.length) {
+    alert("Delete Fail  !");
+  } else {
     alert("Delete success  !");
-    }
+  }
 }
 function CreateUser(name) {
-  id = Math.floor(user.length+1);
+  id = Math.floor(user.length + 1);
   name = document.getElementById("CUserName").value;
-  user.push({id, name });
+  user.push({ id, name });
   alert("Create success  !");
 }
 // ==================== Survey ====================
@@ -220,23 +273,23 @@ function UpdateSurvey(id, name) {
       survey[i].name = name;
     }
   }
-  if (id>user.length) {
-    alert("Update Fail  !"); 
-    }else{
+  if (id > user.length) {
+    alert("Update Fail  !");
+  } else {
     alert("Update success  !");
-    }
+  }
 }
 function DeleteSurvey(id) {
   id = Math.floor(document.getElementById("DSurveyID").value);
-  survey.splice(id-1, 1);
-  if (id>user.length) {
-    alert("Delete Fail  !"); 
-    }else{
+  survey.splice(id - 1, 1);
+  if (id > user.length) {
+    alert("Delete Fail  !");
+  } else {
     alert("Delete success  !");
-    }
+  }
 }
 function CreateSurvey(id, name) {
-  id = Math.floor(survey.length+1);
+  id = Math.floor(survey.length + 1);
   name = document.getElementById("CSurveyName").value;
   survey.push({ id, name });
   alert("Create success  !");
@@ -244,41 +297,41 @@ function CreateSurvey(id, name) {
 }
 
 // ==================== Question ====================
-function UpdateQuestion(id, name, survey_id, order,questionType) {
+function UpdateQuestion(id, name, survey_id, order, questionType) {
   name = document.getElementById("UQuestionName").value;
   survey_id = Math.floor(document.getElementById("USurvey_id").value);
   order = Math.floor(document.getElementById("UOrder").value);
   questionType = Math.floor(document.getElementById("Uquestion_type").value);
   for (let i = 0; i < question.length; i++) {
     if (question[i].id == id) {
-      question[i].question= name;
+      question[i].question = name;
       question[i].survey_id = survey_id;
       question[i].order = order;
       question[i].question_type_id = questionType;
     }
   }
-  if (id>user.length) {
-    alert("Update Fail  !"); 
-    }else{
+  if (id > user.length) {
+    alert("Update Fail  !");
+  } else {
     alert("Update success  !");
-    }
+  }
 }
 function DeleteQuestion(id) {
   id = Math.floor(document.getElementById("DQuestionID").value);
-  question.splice(id-1, 1);
-  if (id>question.length) {
-    alert("Update Fail  !"); 
-    }else{
+  question.splice(id - 1, 1);
+  if (id > question.length) {
+    alert("Update Fail  !");
+  } else {
     alert("Update success  !");
-    }
+  }
 }
-function CreateQuestion( name, survey_id, order,questionType){
-  id = Math.floor(question.length+1);
+function CreateQuestion(name, survey_id, order, questionType) {
+  id = Math.floor(question.length + 1);
   name = document.getElementById("CQuestionName").value;
   survey_id = Math.floor(document.getElementById("CSurvey_id").value);
   order = Math.floor(document.getElementById("COrder").value);
   questionType = Math.floor(document.getElementById("Cquestion_type").value);
-  question.push({id, name, survey_id, order,questionType });   
+  question.push({ id, name, survey_id, order, questionType });
   alert("Create success  !");
 
 }
@@ -295,27 +348,27 @@ function UpdateAnswer(id, _answer, question_id) {
       answer[i].question_id = question_id;
     }
   }
-  if (id>answer.length) {
-    alert("Update Fail  !"); 
-    }else{
+  if (id > answer.length) {
+    alert("Update Fail  !");
+  } else {
     alert("Update success  !");
-    }
+  }
 }
 function DeleteAnswer(id) {
   id = Math.floor(document.getElementById("DAnswerID").value);
-  answer.splice(id-1, 1);
-  if (id>answer.length) {
-    alert("Delete Fail  !"); 
-    }else{
+  answer.splice(id - 1, 1);
+  if (id > answer.length) {
+    alert("Delete Fail  !");
+  } else {
     alert("Delete success  !");
-    }
+  }
 }
 function CreateAnswer(id, _answer, question_id) {
-  id = Math.floor(answer.length+1);
+  id = Math.floor(answer.length + 1);
   _answer = document.getElementById("CAnswer").value;
   question_id = Math.floor(document.getElementById("CQuestion_id").value);
   answer.push({ id, _answer, question_id });
-  alert("Create success  !");                                                               
+  alert("Create success  !");
 }
 
 // ==================== get_not_answers ====================
@@ -377,15 +430,15 @@ function save() {
 }
 
 
-function login(loginUser){
+function login(loginUser) {
   loginUser = document.getElementById("loginUser").value;
   let check = false;
   for (let i = 0; i < user.length; i++) {
-    if(loginUser === user[i].name){
+    if (loginUser === user[i].name) {
       document.getElementById("hide").style.display = "inline";
       document.getElementById("btnOption").style.display = "inline";
       document.getElementById("hideLogin").style.display = "none";
-      document.getElementById("userName").innerHTML = `<h1 style = "text-align: center;" >${user[i].name}</h1>`; 
+      document.getElementById("userName").innerHTML = `<h1 style = "text-align: center;" >${user[i].name}</h1>`;
       check = true;
     }
   }
@@ -395,12 +448,13 @@ function login(loginUser){
 }
 
 
-function option(){
+function option() {
   document.getElementById("hide").style.display = "none";
   document.getElementById("options").style.display = "inline";
   document.getElementById("btnBack").style.display = "inline";
+  LoadSettingSurvey();
 }
-function b0ack(){
+function back() {
   document.getElementById("hide").style.display = "inline";
   document.getElementById("options").style.display = "none";
   document.getElementById("btnBack").style.display = "none";
