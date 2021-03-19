@@ -18,13 +18,14 @@ function createTabs() {
     for (let i = 0; i < categories.length; i++) {
         tabs.innerHTML += `<button style="margin:10px 10px ;" class="btn btn-primary" id="categories${categories[i].id}" value ="${categories[i].name}" 
         type="button" onclick="selectCategories(${categories[i].id})" >${categories[i].name}</button>`
-    }categories
+    } categories
     tabs.innerHTML += `<br>`
 }
 createTabs();
 
 
-getQuestion(1);
+var currentCategoryId = 1;
+getQuestion(currentCategoryId);
 function getQuestion(id) {
     const x = document.getElementById("question");
     x.innerHTML = '';
@@ -43,36 +44,37 @@ function getQuestion(id) {
         </div>`
     }
 }
-var currentCategoryId;
-function selectCategories(categoriesId){
+function selectCategories(categoriesId) {
     getQuestion(categoriesId)
     currentCategoryId = categoriesId;
 }
 
 
-function CreateQuestion(question, answer, order,category) {
-    id = Math.floor(question_answer.length + 1);
+function CreateQuestion(question, answer, order, category_id) {
+    const id = Math.floor(question_answer.length + 1);
     question = document.getElementById("CQuestion").value;
     answer = document.getElementById("CAnswer").value;
     order = Math.floor(document.getElementById("COrder").value);
-    category  = Math.floor(document.getElementById("CCategory").value);
-    question_answer.push({ id, question, answer, order,category });
+    category_id = Math.floor(document.getElementById("CCategory").value);
+    question_answer.push({ id, question, answer, order, category_id });
     alert("Create success  !");
+    console.log(currentCategoryId)
+    console.log(question_answer)
     getQuestion(currentCategoryId);
 }
 
-function UpdateQuestion(id, question, answer, order,category) {
+function UpdateQuestion(id, question, answer, order, category_id) {
     id = Math.floor(document.getElementById("UQuestionId").value)
     question = document.getElementById("UQuestion").value;
     answer = document.getElementById("UAnswer").value;
     order = Math.floor(document.getElementById("UOrder").value);
-    category = Math.floor(document.getElementById("UCategory").value);
+    category_id = Math.floor(document.getElementById("UCategory").value);
     for (let i = 0; i < question.length; i++) {
         if (question_answer[i].id == id) {
             question_answer[i].question = question;
             question_answer[i].answer = answer;
             question_answer[i].order = order;
-            question_answer[i].category_id = category;
+            question_answer[i].category_id = category_id;
         }
     }
 
