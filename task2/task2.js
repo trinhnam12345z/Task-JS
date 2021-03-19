@@ -34,7 +34,7 @@ function getQuestion(id) {
     for (let i = 0; i < questions.length; i++) {
         x.innerHTML += `<div class="accordion-item">
             <h2 class="accordion-header" id="flush-heading${i}">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${i}" aria-expanded="false" aria-controls="flush-collapse${i}">
+            <button onclick="GetValueUpdate(${questions[i].id})" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${i}" aria-expanded="false" aria-controls="flush-collapse${i}">
                 ${questions[i].question}
             </button>
             </h2>
@@ -44,12 +44,35 @@ function getQuestion(id) {
         </div>`
     }
 }
+
+function GetValueUpdate(e){
+    console.log(e);
+
+
+}
+
+// ===================================== Options Select ================================================
+// Question category
+const GetCCategory = document.getElementById("CCategories");
+GetCCategory.innerHTML = '';
+for (let i = 0; i < categories.length; i++) {
+    GetCCategory.innerHTML += `<option value="${categories[i].id}">${categories[i].name}</option>`
+}
+
+const GetUCategory = document.getElementById("UCategory");
+GetUCategory.innerHTML = '';
+for (let i = 0; i < categories.length; i++) {
+    GetUCategory.innerHTML += `<option value="${categories[i].id}">${categories[i].name}</option>`
+}
+
+// =====================================================================================================
+
 function selectCategories(categoriesId) {
     getQuestion(categoriesId)
     currentCategoryId = categoriesId;
 }
 
-
+// Question 
 function CreateQuestion(question, answer, order, category_id) {
     const id = Math.floor(question_answer.length + 1);
     question = document.getElementById("CQuestion").value;
@@ -58,8 +81,6 @@ function CreateQuestion(question, answer, order, category_id) {
     category_id = Math.floor(document.getElementById("CCategory").value);
     question_answer.push({ id, question, answer, order, category_id });
     alert("Create success  !");
-    console.log(currentCategoryId)
-    console.log(question_answer)
     getQuestion(currentCategoryId);
 }
 
@@ -95,4 +116,56 @@ function DeleteQuestion(id) {
         alert("Delete success  !");
     }
     getQuestion(currentCategoryId);
+}
+
+// Category 
+
+function CreateCategory(name) {
+    const id = Math.floor(categories.length + 1);
+    name = document.getElementById("CCategory").value;
+    categories.push({ id, name});
+    alert("Create success  !");
+}
+
+function UpdateCategory(id,name){
+    id = Math.floor(document.getElementById("UCategoryId").value)
+    name = document.getElementById("UCategoryName").value;
+    for (let i = 0; i < categories.length; i++) {
+        if (categories[i].id == id) {
+            categories[i].name = name;
+        }
+    }
+    if (id > categories.length) {
+        alert("Update Fail  !");
+    } else {
+        alert("Update success  !");
+    }
+}
+function DeleteCategory(id){
+    id = Math.floor(document.getElementById("DCategoryID").value);
+    categories.splice(id - 1, 1);
+    if (id > categories.length) {
+        alert("Delete Fail  !");
+    } else {
+        alert("Delete success  !");
+    }
+}
+
+// Setting 
+function setting(){
+    document.getElementById("crud").style.display = "inline";
+    document.getElementById("btnSetting").style.display = "none";
+    document.getElementById("btnBack").style.display = "inline";
+    document.getElementById("tabs").style.display = "none";
+    document.getElementById("question").style.display = "none";
+
+
+}
+
+function back(){
+    document.getElementById("crud").style.display = "none";
+    document.getElementById("btnSetting").style.display = "inline";
+    document.getElementById("btnBack").style.display = "none";
+    document.getElementById("tabs").style.display = "inline";
+    document.getElementById("question").style.display = "inline";
 }
