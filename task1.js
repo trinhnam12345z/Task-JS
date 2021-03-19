@@ -54,6 +54,7 @@ function createTabs() {
   tabs.innerHTML += `<br>`
 }
 createTabs();
+
 function loadSurvey(id) {
   const x = document.getElementById("question");
   x.innerHTML = '';
