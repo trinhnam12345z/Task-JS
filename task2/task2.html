@@ -32,102 +32,115 @@
         <div style="margin-top: 50px;" class=" accordion accordion-flush" id="accordionFlushExample">
             <div id="question"></div>
         </div>
-        <div id="crud" style="display: none;">
-            <!-- Question  -->
-            <div style="margin-top: 50px;" class="card">
-                <div class="p-3 mb-2 bg-primary text-white">CREATE QUESTION ANSWER</div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Question</label>
-                        <input type="text" class="form-control" id="CQuestion">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Answer</label>
-                        <input type="text" class="form-control" id="CAnswer">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Order</label>
-                        <input type="number" class="form-control" id="COrder">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Category</label>
-                        <select style="margin-top: 10px;" id="CCategories" class="form-select"
-                            aria-label="Default select example"></select>
-                    </div>
-                    <button style="margin-top: 20px;" onclick="CreateQuestion()" class="btn btn-primary">Save</button>
-                </div>
-            </div>
-            <div style="margin-top: 20px;" class="card">
-                <div class="p-3 mb-2 bg-primary text-white">UPDATE QUESTION ANSWER</div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Question ID</label>
-                        <input type="text" class="form-control" id="UQuestionId">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Question</label>
-                        <input type="text" class="form-control" id="UQuestion">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Answer</label>
-                        <input type="text" class="form-control" id="UAnswer">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Order</label>
-                        <input type="number" class="form-control" id="UOrder">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Category</label>
-                        <select style="margin-top: 10px;" id="UCategory" class="form-select"
-                            aria-label="Default select example"></select>
-                    </div>
-                    <button style="margin-top: 20px;" onclick="UpdateQuestion()" class="btn btn-primary">Save</button>
-                </div>
-            </div>
-            <div style="margin-top: 50px;" class="card">
-                <div class="p-3 mb-2 bg-primary text-white">DELETE QUESTION ANSWER</div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Question ID</label>
-                        <input type="text" class="form-control" id="DQuestionID">
-                    </div>
-                    <button style="margin-top: 20px;" onclick="DeleteQuestion()" class="btn btn-primary">Save</button>
-                </div>
-            </div>
 
+        <div id="crud" style="display: none;">
+            <div class="row">
+                <div class="col-md-6">
+                    <button style="margin-top: 20px;" onclick="ListQuestion()" class="btn btn-primary">Question</button>
+                </div>
+                <div class="col-md-6">
+                    <button style="margin-top: 20px;" onclick="ListAnswer()" class="btn btn-primary">Categories</button>
+                </div>
+
+            </div>
+            <div id="ListQuestion" style="display: inline;">
+                <!-- Question  -->
+                <div style="margin-top: 50px;" class="card">
+                    <div class="p-3 mb-2 bg-primary text-white">CREATE QUESTION ANSWER</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Question</label>
+                            <input type="text" class="form-control" id="CQuestion">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Answer</label>
+                            <input type="text" class="form-control" id="CAnswer">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Order</label>
+                            <input type="number" class="form-control" id="COrder">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Category</label>
+                            <select style="margin-top: 10px;" id="CCategories" class="form-select"
+                                aria-label="Default select example"></select>
+                        </div>
+                        <button style="margin-top: 20px;" onclick="CreateQuestion()" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;" class="card">
+                    <div class="p-3 mb-2 bg-primary text-white">UPDATE QUESTION ANSWER</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Question ID</label>
+                            <input type="text" class="form-control" id="UQuestionId">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Question</label>
+                            <input type="text" class="form-control" id="UQuestion">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Answer</label>
+                            <input type="text" class="form-control" id="UAnswer">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Order</label>
+                            <input type="number" class="form-control" id="UOrder">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Category</label>
+                            <select style="margin-top: 10px;" id="UCategory" class="form-select"
+                                aria-label="Default select example"></select>
+                        </div>
+                        <button style="margin-top: 20px;" onclick="UpdateQuestion()" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+                <div style="margin-top: 50px;" class="card">
+                    <div class="p-3 mb-2 bg-primary text-white">DELETE QUESTION ANSWER</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Question ID</label>
+                            <input type="text" class="form-control" id="DQuestionID">
+                        </div>
+                        <button style="margin-top: 20px;" onclick="DeleteQuestion()" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
             <!-- Category -->
-            <div style="margin-top: 50px;" class="card">
-                <div class="p-3 mb-2 bg-primary text-white">CREATE CATEGORY</div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Category</label>
-                        <input type="text" class="form-control" id="CCategory">
+            <div id="ListAnswer" style="display: none;">
+                <div style="margin-top: 50px;" class="card">
+                    <div class="p-3 mb-2 bg-primary text-white">CREATE CATEGORY</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Category</label>
+                            <input type="text" class="form-control" id="CCategory">
+                        </div>
+                        <button style="margin-top: 20px;" onclick="CreateCategory()" class="btn btn-primary">Save</button>
                     </div>
-                    <button style="margin-top: 20px;" onclick="CreateCategory()" class="btn btn-primary">Save</button>
                 </div>
-            </div>
-            <div style="margin-top: 50px;" class="card">
-                <div class="p-3 mb-2 bg-primary text-white">UPDATE CATEGORY</div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Category ID</label>
-                        <input type="number" class="form-control" id="UCategoryId">
+                <div style="margin-top: 50px;" class="card">
+                    <div class="p-3 mb-2 bg-primary text-white">UPDATE CATEGORY</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Category ID</label>
+                            <input type="number" class="form-control" id="UCategoryId">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Category Name</label>
+                            <input type="text" class="form-control" id="UCategoryName">
+                        </div>
+                        <button style="margin-top: 20px;" onclick="UpdateCategory()" class="btn btn-primary">Save</button>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Category Name</label>
-                        <input type="text" class="form-control" id="UCategoryName">
-                    </div>
-                    <button style="margin-top: 20px;" onclick="UpdateCategory()" class="btn btn-primary">Save</button>
                 </div>
-            </div>
-            <div style="margin-top: 50px;" class="card">
-                <div class="p-3 mb-2 bg-primary text-white">DELETE CATEGORY</div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Category ID</label>
-                        <input type="text" class="form-control" id="DCategoryID">
+                <div style="margin-top: 50px;" class="card">
+                    <div class="p-3 mb-2 bg-primary text-white">DELETE CATEGORY</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Category ID</label>
+                            <input type="text" class="form-control" id="DCategoryID">
+                        </div>
+                        <button style="margin-top: 20px;" onclick="DeleteCategory()" class="btn btn-primary">Save</button>
                     </div>
-                    <button style="margin-top: 20px;" onclick="DeleteCategory()" class="btn btn-primary">Save</button>
                 </div>
             </div>
         </div>

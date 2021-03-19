@@ -224,3 +224,12 @@ function back() {
     document.getElementById("tabs").style.display = "inline";
     document.getElementById("question").style.display = "inline";
 }
+
+function ListQuestion(){
+    document.getElementById("ListQuestion").style.display = "inline";
+    document.getElementById("ListAnswer").style.display = "none";
+}
+function ListAnswer(){
+    document.getElementById("ListAnswer").style.display = "inline";
+    document.getElementById("ListQuestion").style.display = "none";
+}
