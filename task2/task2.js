@@ -48,7 +48,6 @@ function getQuestion(id) {
 function GetValueUpdate(e){
     console.log(e);
 
-
 }
 
 // ===================================== Options Select ================================================
