@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <title>Task2
+    </title>
+</head>
+
+<body>
+    <div class="container">
+        <div id="tabs"></div>
+        <div style="margin-top: 50px;" class=" accordion accordion-flush" id="accordionFlushExample">
+            <div id="question"></div>
+        </div>
+
+        <div style="margin-top: 50px;" class="card">
+            <div class="p-3 mb-2 bg-primary text-white">CREATE</div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Question</label>
+                    <input type="text" class="form-control" id="CQuestion">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Answer</label>
+                    <input type="text" class="form-control" id="CAnswer">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Order</label>
+                    <input type="number" class="form-control" id="COrder">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Category</label>
+                    <input type="number" class="form-control" id="CCategory">
+                </div>
+                <button style="margin-top: 20px;" onclick="CreateQuestion()" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+        <div style="margin-top: 20px;" class="card">
+            <div class="p-3 mb-2 bg-primary text-white">UPDATE</div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Question ID</label>
+                    <input type="text" class="form-control" id="UQuestionId">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Question</label>
+                    <input type="text" class="form-control" id="UQuestion">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Answer</label>
+                    <input type="text" class="form-control" id="UAnswer">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Order</label>
+                    <input type="number" class="form-control" id="UOrder">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Category</label>
+                    <input type="number" class="form-control" id="UCategory">
+                </div>
+                <button style="margin-top: 20px;" onclick="UpdateQuestion()" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+        <div style="margin-top: 50px;" class="card">
+            <div class="p-3 mb-2 bg-primary text-white">DELETE</div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Question ID</label>
+                    <input type="text" class="form-control" id="DQuestionID">
+                </div>
+                <button style="margin-top: 20px;" onclick="DeleteQuestion()" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./task2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
