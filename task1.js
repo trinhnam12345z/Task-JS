@@ -108,7 +108,7 @@ function loadSurvey(id) {
 function LoadSettingSurvey() {
   for (let s = 0; s < survey.length; s++) {
 
-    const x = document.getElementById("options");
+    const x = document.getElementById("optionss");
     x.innerHTML = '';
     const surveySelected = survey[s];
     // for (let s = 0; s < survey.length; s++) {
@@ -449,13 +449,13 @@ function login(loginUser) {
 
 
 function option() {
-  document.getElementById("hide").style.display = "none";
+  document.getElementById("hide").style.display = "none"; //none
   document.getElementById("options").style.display = "inline";
   document.getElementById("btnBack").style.display = "inline";
   LoadSettingSurvey();
 }
 function back() {
-  document.getElementById("hide").style.display = "inline";
+  document.getElementById("hide").style.display = "inline"; //inline
   document.getElementById("options").style.display = "none";
   document.getElementById("btnBack").style.display = "none";
 }
